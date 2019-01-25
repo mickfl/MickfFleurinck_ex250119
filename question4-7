@@ -1,0 +1,30 @@
+#question4
+select gene_name,(seq_region_end - seq_region_start + 1) as size from gene order by size asc limit 1;
+answer
+ gene_name | size |
++-----------+------+
+| TRDD1     |    8
+
+#question5
+select gene_name,count(transcript.gene_id) as amount from transcript join gene on transcript.gene_id= gene.gene_id group by gene_name order by amount desc limit 1;
+ gene_name | amount |
++-----------+--------+
+| U6        |   1329 
+
+#question6
+select chromosome, count(exon_id) as nmbr_of_exons from gene join exon.seq_region_end = gene.seq_region_end where description like '%cancer%' group by gene_name order by nmbr_of_exons limit 1 offset 1;
+
+#question7 Give the number of rows from the exon table and do the same for the exon_transcript table. Explain why there is a difference in number of rows.
+select count(exon_id) from exon; 
+| count(exon_id) |
++----------------+
+|         642590 
+
+select count(exon_id) from exon; 
++----------------+
+| count(exon_id) |
++----------------+
+|        1178393 |
++----------------+
+
+the difference in amount of rows can be explained because of th table does not only contain the original exons but also te variants of the exons (=transcripts) and al these variants will also have there own exon_id number
