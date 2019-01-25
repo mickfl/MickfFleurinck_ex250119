@@ -1,2 +1,20 @@
-#1
-#2
+unf)
+db(personnelno,name,dateofbirth,labcode,labname,research)
+
+#1nf(in the first normal form we get split the repeating groups, in this case rearch is a repeating group so we split it up in 3 seperate columns)
+db(personnelno,name,dateofbirth,labcode,labname,researchcode,reserachdiscription,reasearchsupervisor)
+
+#2nf)(here we will split our database into  different tables so every non prime attribut is deppendent on the primary key, so now whe ar going to split in to 3 tables one for personnel info, one for lab info and one for research info all tables still include the personnelno to refernce to the personnel table )
+
+personnel(personnelno, name, date of birth)
+lab(personnelno, labcode, labname)
+reserach(personnelno, reasearchcode, researchdiscription, researchsupervisor)
+
+#3nf(in this step whe are gooing to look if every attribute is dependent on the key and gives info about it if not whe are going to split it further. in this case the names are not unique so teh date of birth can only depent on the personnelno and not on the name)
+
+personnel(personnelno,name)
+birthdate(personnelno,dateofbirth)
+lab(personnelno, labcode, labname)
+reserach(personnelno, reasearchcode, researchdiscription, researchsupervisor)
+
+
